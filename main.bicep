@@ -1,13 +1,13 @@
 @sys.description('The Web BE App name')
 @minLength(3)
 @maxLength(24)
-param ServiceAppName string = 'JP-app-bicep-be'
+param ServiceAppName string = 'JP-assignment-be'
 
 
 @sys.description('The Web FE App name')
 @minLength(3)
 @maxLength(24)
-param appServiceAppName string = 'JP-app-bicep-fe'
+param appServiceAppName string = 'JP-assignemnt-fe'
 
 
 @sys.description('The App Service Plan name')
