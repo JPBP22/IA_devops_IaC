@@ -1,10 +1,10 @@
-@sys.description('The Web App name')
+@sys.description('The Web BE App name')
 @minLength(3)
 @maxLength(24)
 param ServiceAppName string = 'JP-app-bicep-be'
 
 
-@sys.description('The Web App name')
+@sys.description('The Web FE App name')
 @minLength(3)
 @maxLength(24)
 param appServiceAppName string = 'JP-app-bicep-fe'
@@ -28,7 +28,6 @@ param enviormentType string = 'nonprod'
 param location string = resourceGroup().location
 
 var storageAccountSkuName = (enviormentType == 'prod') ? 'Standard_GRS' : 'Standard_LRS'
-var appServicePlanSkuName = (enviormentType == 'nonprod') ? 'P2V3' : 'F1'
 
 
 resource storageAccount'Microsoft.Storage/storageAccounts@2022-05-01' = {
@@ -43,28 +42,16 @@ resource storageAccount'Microsoft.Storage/storageAccounts@2022-05-01' = {
   }
 }
 
-resource appServicePlan 'Microsoft.Web/serverFarms@2022-03-01' = {
-    name: appServicePlanName
+module appService 'modules/appstuff.bicep' = {
+  name: 'appService'
+  params:{
     location: location
-    sku: {
-      name: appServicePlanSkuName
+    appServiceAppName:appServiceAppName
+    ServiceAppName:ServiceAppName
+    appServicePlanName: appServicePlanName
+    enviormentType:enviormentType
+
   }
 }
 
-resource appServiceApp 'Microsoft.Web/sites@2022-03-01' = {
-  name: appServiceAppName 
-  location: location
-  properties: {
-    serverFarmId: appServicePlan.id
-    httpsOnly: true
-    }
-}
-
-resource ServiceApp 'Microsoft.Web/sites@2022-03-01' = {
-  name: ServiceAppName
-  location: location
-  properties: {
-    serverFarmId: appServicePlan.id
-    httpsOnly: true
-    }
-}
+output appServiceAppHostName string = appService.outputs.appServiceAppHostName
