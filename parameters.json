@@ -3,16 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
     "appServiceAppName": {
-            "value": "JP-app-bicep-fe"
+            "value": "JPBello-assignment-fe"
         },
         "appServicePlanName": {
-            "value": "JP-asp-bicep"
+            "value": "JPBello-asssignemnt-asp"
         },
         "storageAccountName": {
             "value": "jpbellostorage"
         },
         "ServiceAppName": {
-            "value": "JP-app-bicep-be"
+            "value": "JPBello-assignement-be"
         }
     }
 }

@@ -1,7 +1,7 @@
 param location string = resourceGroup().location
-param ServiceAppName string = 'JP-app-bicep-be'
-param appServiceAppName string = 'JP-app-bicep-fe'
-param appServicePlanName string = 'JP-asp-bicep'
+param ServiceAppName string = 'JPBello-assignement-be'
+param appServiceAppName string = 'JPBello-assignment-fe'
+param appServicePlanName string = 'JPBello-asssignemnt-asp'
 @allowed([
   'nonprod'
   'prod'
